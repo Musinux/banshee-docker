@@ -35,4 +35,3 @@ make start
 ## Known Issues
 
 * You have to start it from the console
-* The qt theme is ugly
