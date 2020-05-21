@@ -21,4 +21,25 @@ start:
     --volume /tmp/pulseaudio.socket:/tmp/pulseaudio.socket \
     --volume /tmp/pulseaudio.client.conf:/etc/pulse/client.conf \
 		--volume /usr/share/dbus-1:/usr/share/dbus-1 \
+		--volume /usr/share/themes:/usr/share/themes \
 		-ti banshee
+test:
+	docker run \
+		--security-opt seccomp=unconfined \
+		--net=host \
+		--volume=$(HOME):$(HOME):rw \
+		--volume="$(HOME)/.Xauthority:$(HOME)/.Xauthority:rw" \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$(DISPLAY) \
+		--env DBUS_SESSION_BUS_ADDRESS="$(DBUS_SESSION_BUS_ADDRESS)" \
+		-v /run/user/$$(id -u)/bus:/run/user/$$(id -u)/bus:rw \
+		-v /var/lib/dbus/machine-id:/var/lib/dbus/machine-id \
+		--device /dev/snd \
+		-v /var/run/dbus/:/var/run/dbus \
+		--env PULSE_SERVER=unix:/tmp/pulseaudio.socket \
+    --env PULSE_COOKIE=/tmp/pulseaudio.cookie \
+    --volume /tmp/pulseaudio.socket:/tmp/pulseaudio.socket \
+    --volume /tmp/pulseaudio.client.conf:/etc/pulse/client.conf \
+		--volume /usr/share/dbus-1:/usr/share/dbus-1 \
+		--volume /usr/share/themes:/usr/share/themes \
+		-ti banshee /bin/bash
