@@ -19,5 +19,4 @@ start:
     --env PULSE_COOKIE=/tmp/pulseaudio.cookie \
     --volume /tmp/pulseaudio.socket:/tmp/pulseaudio.socket \
     --volume /tmp/pulseaudio.client.conf:/etc/pulse/client.conf \
-		-ti banshee /bin/bash
-		
+		-ti banshee
