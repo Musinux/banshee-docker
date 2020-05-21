@@ -1,5 +1,3 @@
-BANSHEE_USERID := $(id -u)
-
 install:
 	sudo docker build --build-arg username=$(USER) -t banshee .
 start:
@@ -13,7 +11,7 @@ start:
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-e DISPLAY=unix$(DISPLAY) \
 		--env DBUS_SESSION_BUS_ADDRESS="$(DBUS_SESSION_BUS_ADDRESS)" \
-		-v /run/user/$(BANSHEE_USERID)/bus:/run/user/$(BANSHEE_USERID)/bus:rw \
+		-v /run/user/$$(id -u)/bus:/run/user/$$(id -u)/bus:rw \
 		-v /var/lib/dbus/machine-id:/var/lib/dbus/machine-id \
 		--device /dev/snd \
 		-v /var/run/dbus/:/var/run/dbus \
@@ -21,5 +19,5 @@ start:
     --env PULSE_COOKIE=/tmp/pulseaudio.cookie \
     --volume /tmp/pulseaudio.socket:/tmp/pulseaudio.socket \
     --volume /tmp/pulseaudio.client.conf:/etc/pulse/client.conf \
-		-ti banshee
+		-ti banshee /bin/bash
 		

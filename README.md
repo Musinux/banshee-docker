@@ -16,18 +16,25 @@ git clone https://github.com/musinux/banshee-docker
 ```
 
 ## Install
-```
-make install
+**You need to install docker first**
+```bash
+cd banshee-docker
+make install # may take a while
 ```
 
 ## Run
-```
+Consider reading the Makefile to understand what is done under the hood.
+It will share all your current user folder with the banshee container
+Any security issue related to banshee may affect your system too, because the isolation is weakened to make the integration with the desktop work.
+
+```bash
+cd banshee-docker
 make start
 ```
-
 
 ## Known Issues
 
 * The integration with the GNOME Desktop is not working for now
 * If you close the window, the player disapears but it's hard to make it appear again (you have to kill it)
 * You can't use the multimedia keys
+* You have to start it from the console
