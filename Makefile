@@ -5,6 +5,7 @@ start:
 	cp ./pulseaudio.client.conf /tmp/pulseaudio.client.conf
 	pactl load-module module-native-protocol-unix socket=/tmp/pulseaudio.socket
 	docker run \
+		--security-opt seccomp=unconfined \
 		--net=host \
 		--volume=$(HOME):$(HOME):rw \
 		--volume="$(HOME)/.Xauthority:$(HOME)/.Xauthority:rw" \
@@ -19,4 +20,5 @@ start:
     --env PULSE_COOKIE=/tmp/pulseaudio.cookie \
     --volume /tmp/pulseaudio.socket:/tmp/pulseaudio.socket \
     --volume /tmp/pulseaudio.client.conf:/etc/pulse/client.conf \
+		--volume /usr/share/dbus-1:/usr/share/dbus-1 \
 		-ti banshee

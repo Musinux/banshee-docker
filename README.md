@@ -34,7 +34,5 @@ make start
 
 ## Known Issues
 
-* The integration with the GNOME Desktop is not working for now
-* If you close the window, the player disapears but it's hard to make it appear again (you have to kill it)
-* You can't use the multimedia keys
 * You have to start it from the console
+* The qt theme is ugly
