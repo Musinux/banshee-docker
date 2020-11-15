@@ -18,6 +18,7 @@ git clone https://github.com/musinux/banshee-docker
 ## Install
 **You need to install docker first**
 ```bash
+sudo apt install gconf-service # gnome now uses dconf but banshee needs dconf to configure the music folder
 cd banshee-docker
 make install # may take a while
 ```
