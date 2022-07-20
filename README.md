@@ -33,6 +33,15 @@ cd banshee-docker
 make start
 ```
 
-## Known Issues
+## Alternate solution with x11docker
 
-* You have to start it from the console
+[x11docker](https://github.com/mviereck/x11docker) is a tool to assist in running dockerized GUI apps. Depending on your host environment, you may find x11docker provides you with some extra flexibility to get the application running.
+
+The x11docker sub-directory in this repository contains a simple Dockerfile and shell script to get started. **You will likely have to adjust the x11docker options to fit your environment.**
+
+With x11docker installed, the following will build the banshee image and run x11docker with some basic settings to get you started (host pulseaudio, host dbus, mounting $HOME, network access)
+
+```bash
+cd x11docker
+./run.sh
+```
